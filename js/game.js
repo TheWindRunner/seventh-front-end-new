@@ -30,7 +30,7 @@ var canvas=document.getElementById("canvas");//JavaScript 使用 id 来寻找 ca
      var timer2;
      var timer
      var block=false;//表示画面中是否有方块
-     var blockv=6;
+     var blockv=0.5;
      var blockx=0;
      var blocky=0;//表示小块的纵坐标
      var count=0;
@@ -48,28 +48,15 @@ var canvas=document.getElementById("canvas");//JavaScript 使用 id 来寻找 ca
 	context.fill();
 	context.closePath(); //画圆
      $("#body").keyup(function(event){
-     	if(event.keyCode == 37){//是否维持惯性
-				// clearInterval(left);
-				// clearInterval(right);
-		// 		left=setInterval(　　　　
-		// 　　　　　　function(){	
-		clearInterval(timer2)		        
+     	if(event.keyCode == 37){//是否维持惯性	
+		             clearInterval(timer2)		        
 					 angle=angle-Math.PI/50;
 					 code=37;
-
-					// }　　
-			  //   ,40)　
 			}
 		if(event.keyCode==39){
 			clearInterval(timer2)
-				// clearInterval(left);
-				// clearInterval(right);
-		// 		right=setInterval(　　　　
-		// 　　　　　　function(){
-					 angle=angle+Math.PI/50;
-					 code=39;
-					// }　　
-			  //   ,40)　
+			angle = angle + Math.PI / 50;
+			code = 39;
 		}           
      	if(event.keyCode==13){
      		num++;
@@ -81,8 +68,8 @@ var canvas=document.getElementById("canvas");//JavaScript 使用 id 来寻找 ca
      		}
      		ball[num][0]+=100*Math.cos(angle);
      		ball[num][1]+=100*Math.sin(angle);
-     		ball[num][2]=20*Math.cos(angle);//vx
-     		ball[num][3]=20*Math.sin(angle);//vy
+     		ball[num][2]=10*Math.cos(angle);//vx
+     		ball[num][3]=10*Math.sin(angle);//vy
      		code=13;
      	}	
      	if(event.keyCode==40){
@@ -103,7 +90,6 @@ var canvas=document.getElementById("canvas");//JavaScript 使用 id 来寻找 ca
 	    }
  		timer2=setInterval(
  			function(){
- 				// clearInterval(timer2);
 					console.log(angle);
 						for (j = 0; j <= num; j++) {
 							context.clearRect(0, 0, canvas.width, canvas.height)
@@ -122,9 +108,7 @@ var canvas=document.getElementById("canvas");//JavaScript 使用 id 来寻找 ca
 							ball[j][0] += ball[j][2]; //更新x值
 							ball[j][1] += ball[j][3]; //更新y值
 							ball[j][3] += 0.1; //更新vy值;
-						}
-					
-					
+						}	
 						if (block == true) {
 							blockx = blockx + blockv;
 							if (blockx >= 1370) {
@@ -145,8 +129,7 @@ var canvas=document.getElementById("canvas");//JavaScript 使用 id 来寻找 ca
 								alert("你的得分是：" + count)
 								location.reload() //刷新页面;
 							}
-						}
- 				    
+						}   
  				    context.clearRect(0,0,1366,768)      		    
 					if (block == true) {
 						context.beginPath();
@@ -190,17 +173,7 @@ var canvas=document.getElementById("canvas");//JavaScript 使用 id 来寻找 ca
 					context.fillStyle="orange";
 					context.strokeStyle="transparent";		
 					context.fill();
-					context.closePath(); //画圆
-			     		// context.fillStyle="blue";
-				      //   context.beginPath();
-				      //   context.arc(ball[j][0],ball[j][1],8,0,2*Math.PI ,true)
-				      //   context.closePath();
-				      //   context.fill();
-				        },40)
-     	
+					context.closePath(); //画圆；
+				        },1)     	
 })
-     
-     // clearInterval(timer1);
-     //  timer1=setInterval(function(){
-      	
-     // },40)
+
